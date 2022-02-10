@@ -28,6 +28,7 @@ export default function Routes() {
       <Stack.Screen name="signin" component={SignIn} />
       <Stack.Screen name="signup" component={SignUp} />
       <Stack.Screen name="otp" component={OtpPage} />
+      <Stack.Screen name="chooseImages" component={Page2}/>
     </Stack.Navigator>
   );
 
@@ -124,8 +125,8 @@ export default function Routes() {
   );
   return (
     <NavigationContainer>
-      {/* <AuthStack />  */}
-      <MainStack/>
+      <AuthStack />  
+     
     </NavigationContainer>
   );
 }

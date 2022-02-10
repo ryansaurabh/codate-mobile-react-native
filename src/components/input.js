@@ -1,15 +1,21 @@
 import React from 'react';
 import { StyleSheet, TextInput } from "react-native";
 
-export default function Input({ value, type, placeholder, onChange }) {
+export default function Input({ value, type, error, placeholder, onChang }) {
   return (
     <>
       <TextInput
         value={value}
-        onChange={(e) => {
-          onChange(e);
-        }}
-        style={styles.textInput}
+        onChangeText={(e)=>{onChang(e)}}
+        style={{borderBottomColor:error?'red':'#fff',
+        alignSelf: "stretch",
+        justifyContent: "center",
+        color: "#fff",
+        borderBottomWidth: 1,
+        marginBottom: 44,
+        padding: 4,
+        fontSize: 14,
+      }}
         placeholder={placeholder}
         type={type}
         placeholderTextColor={"#666"}
@@ -34,13 +40,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   textInput: {
-    alignSelf: "stretch",
-    justifyContent: "center",
-    color: "#fff",
-    borderBottomColor: "#fff",
-    borderBottomWidth: 1,
-    marginBottom: 44,
-    padding: 4,
-    fontSize: 14,
+    
   },
 });

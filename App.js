@@ -7,6 +7,8 @@ import Routes from './src/pages/routes';
 import { ChatRoom } from './src/pages/chatRoom';
 import Matches from './src/pages/matches';
 import GlobalFont from 'react-native-global-font'
+import SignUp from './src/pages/signup';
+import PasswordPage from './src/pages/passwordPage';
 
 export default function App() {
   
