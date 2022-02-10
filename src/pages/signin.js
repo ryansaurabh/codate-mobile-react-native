@@ -38,7 +38,7 @@ export default function SignIn({navigation}) {
       setEmailError(true);
     }
     else{
-      setEmailError(false);
+      setEmailErrorgit (false);
     }
     if (loginForm.pass === '') {
       setPassError(true);
