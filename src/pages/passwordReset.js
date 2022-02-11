@@ -5,53 +5,31 @@ import {
   View,
   Dimensions,
   SafeAreaView,
-  Pressable,
 } from 'react-native';
 import {useState} from 'react';
 import Input from '../components/input';
 import Button from '../components/button';
-import { Auth } from 'aws-amplify';
-
-//Global variables(email validation)
-const regEx =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+import {Auth} from 'aws-amplify';
 
 export default function SignIn({navigation}) {
   const [loginForm, setLoginForm] = useState({
-    email: '',
-    pass: '',
+    password: '',
+    verifyPassword: '',
   });
-  const [emailError, setEmailError] = useState(false);
-  const [passError, setPassError] = useState(false);
-
-   //memberFunctions (email validation)
-   const ValidateEmail = email => {
-    console.log(loginForm.email)
-    if (regEx.test(loginForm.email)) {
-      return true;
-    }
-    return false;
-  };
+  const [passwordError, setPasswordError] = useState(false);
+  const [verifyPasswordError, setVerifyPasswordError] = useState(false);
 
   const ValidateForm = () => {
-    if (!ValidateEmail(loginForm.email)) {
-      setEmailError(true);
+    if (loginForm.password === '') {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
     }
-    else{
-      setEmailError(false);
+    if (loginForm.verifyPassword != loginForm.password) {
+      setVerifyPasswordError(true);
+    } else {
+      setVerifyPasswordError(false);
     }
-    if (loginForm.pass === '') {
-      setPassError(true);
-    }
-    else{
-      setPassError(false)
-    }
-    if (
-     
-      !ValidateEmail(loginForm.email) ||
-      loginForm.pass === ''
-    )
-      return false;
     return true;
   };
 
@@ -72,59 +50,47 @@ export default function SignIn({navigation}) {
         <View style={{width: '80%'}}>
           <View>
             <Input
-              value={loginForm.email}
-              error={emailError}
-              placeholder={'Your Email'}
-              type={'email'}
+              value={loginForm.password}
+              error={passwordError}
+              placeholder={'Enter Password'}
+              type={'password'}
               onChang={e => {
-                setLoginForm({...loginForm, email: e});
-                setEmailError(false);
+                setLoginForm({...loginForm, password: e});
+                setPasswordError(false);
               }}
             />
           </View>
           <View>
             <Input
-              value={loginForm.password}
-              error={passError}
-              placeholder={'Your Password'}
+              value={loginForm.verifyPassword}
+              error={verifyPasswordError}
+              placeholder={'Verify Password'}
               type={'text'}
               onChang={e => {
-                setLoginForm({...loginForm, pass: e});
-                setPassError(false);
+                setLoginForm({...loginForm, verifyPassword: e});
+                setVerifyPasswordError(false);
               }}
             />
-            <Pressable
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-end',
-                marginTop: -10,
-              }}  onPress={() => navigation.navigate('forgotpassword')}>
-              <Text style={{color: '#71819F'}}>Forgot Password?</Text>
-            </Pressable>
           </View>
           <View>
             <Button
               text="Login"
-              handleClick={async() => {
+              handleClick={async () => {
                 if (ValidateForm()) {
-                  try{
-                  await Auth.signIn({username:loginForm.email, password:loginForm.pass})
-                  navigation.navigate('chooseImages');
-                  }catch(e){
+                  try {
+                await Auth.forgotPasswordSubmit(
+                    ...loginForm.password,
+                    ...loginForm.verifyPassword
+
+                )
+                navigation.navigate('login');
+                  } catch (e) {
                     alert('so');
                     console.log(e);
                   }
-                }
-                else alert('Not all fields are filled');
+                } else alert('Password Required');
               }}
             />
-            <Pressable
-              style={{marginTop: 10}}
-              onPress={() => navigation.navigate('signup')}>
-              <Text style={{textAlign: 'center', color: '#71819F'}}>
-                New user? Signup
-              </Text>
-            </Pressable>
           </View>
         </View>
       </View>

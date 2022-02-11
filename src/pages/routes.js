@@ -12,6 +12,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Swiper from './swiper';
 import Matches from './matches';
 import ProfileList from './profileList';
+import PasswordPage from './passwordPage';
 import { ChatRoom } from './chatRoom';
 import { Text } from 'react-native';
 
@@ -29,6 +30,8 @@ export default function Routes() {
       <Stack.Screen name="signup" component={SignUp} />
       <Stack.Screen name="otp" component={OtpPage} />
       <Stack.Screen name="chooseImages" component={Page2}/>
+      <Stack.Screen name="forgotpassword" component={PasswordPage}/>
+      <Stack.Screen name="login" component={SignIn}/>
     </Stack.Navigator>
   );
 

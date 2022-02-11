@@ -5,7 +5,6 @@ import {
   View,
   Dimensions,
   SafeAreaView,
-  TouchableOpacity,
   Pressable,
 } from "react-native";
 
@@ -54,6 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     paddingLeft: 20,
     paddingTop: 30,
+    fontFamily: 'DavidLibre',
   },
   backArrow: {
     color: "#fff",
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   doneTxt: {
     color: "#fff",
     fontSize: 20,
+    fontFamily: 'DavidLibre',
   },
   profileBox: {
     height: 250,
@@ -90,11 +91,13 @@ const styles = StyleSheet.create({
   addPic: {
     color: "#000",
     fontSize: 30,
+    fontFamily: 'DavidLibre',
   },
   addPhoto: {
     marginTop: 50,
     color: "#fff",
     fontSize: 20,
+    fontFamily: 'DavidLibre',
   },
   jcac: {
     justifyContent: "space-evenly",

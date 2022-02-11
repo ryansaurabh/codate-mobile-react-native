@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 17,
     color: "#FFFF33",
-    textAlign:'center'
+    textAlign:'center',
+    fontFamily: 'DavidLibre'
   },
   box: {
     backgroundColor: "#181228",
