@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "codatemobile",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcodatemobilebcba8cc4",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

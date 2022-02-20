@@ -2,10 +2,11 @@ import { View, StyleSheet, Text, Pressable} from "react-native";
 import React from "react";
 
 
-export default function ProfileComp({ icon, content }) {
-  
+export default function ProfileComp(props) {
+  const { icon, content, ...rest }= props;
+
   return (
-    <Pressable onPress={()=>{}} style={styles.container}>
+    <Pressable {...rest} style={styles.container}>
       <View style={styles.jcac}>
         <View style={{alignSelf:'center',paddingHorizontal:10}}>
          {icon}
@@ -18,6 +19,7 @@ export default function ProfileComp({ icon, content }) {
     </Pressable>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

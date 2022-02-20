@@ -1,0 +1,72 @@
+type User 
+@model
+@auth(rules: [
+  {allow: owner, operations: [read, create, update, delete]},
+  {allow: groups, groups:["admin"], operations:[read, create, update, delete]}
+  ])
+{
+  id: ID!
+  name: String
+  dob: String
+  bio:String
+  gender:String
+  phoneNumber:String
+  description: String
+  location:Location
+  profilePhoto:S3Object
+  photos:[S3Object]
+  matches:[UserMatches] @hasMany (indexName:"byUser", fields:["id"])
+  leftSwipes:[UsersLeftSwipe] @hasMany( indexName:"byUser", fields:["id"])
+  rightSwipes:[UsersRightSwipe] @hasMany( indexName:"byUser", fields:["id"])
+}
+
+type UserMatches 
+@model
+@auth(rules: [
+  {allow: owner, operations: [read, create, update, delete]},
+  {allow: groups, groups:["admin"], operations:[read, create, update, delete]}
+  ])
+ {
+  id:ID!
+  userId:ID! @index(name:"byUser")
+  user:User @belongsTo(fields:["userId"])
+  matcheduser:User @hasOne
+}
+
+type UsersLeftSwipe
+@model
+@auth(rules: [
+  {allow: owner, operations: [read, create, update, delete]},
+  {allow: groups, groups:["admin"], operations:[read, create, update, delete]}
+  ])
+ {
+  id:ID!
+  userId:ID! @index(name:"byUser")
+  user:User @belongsTo(fields:["userId"])
+  leftSwipedUser:User @hasOne
+}
+
+type UsersRightSwipe 
+@model
+@auth(rules: [
+  {allow: owner, operations: [read, create, update, delete]},
+  {allow: groups, groups:["admin"], operations:[read, create, update, delete]}
+  ])
+ {
+  id:ID!
+  userId:ID! @index(name:"byUser")
+  user:User @belongsTo(fields:["userId"])
+  rightSwipedUser:User @hasOne
+}
+
+type Location  {
+  lat: String
+  long:String
+}
+
+type S3Object 
+{
+  bucket: String
+  key: String
+  region: String
+}

@@ -3,31 +3,39 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 import ProfileComp from '../components/ProfileComp';
 import FaIcon from 'react-native-vector-icons/FontAwesome5';
+import { Auth } from 'aws-amplify';
 
-const componentData = [
-  {
-    icon: <FaIcon name="user" size={23} color={"#FFFF33"}/>,
-    content: 'My Profile',
-  },
-  {
-    icon: <FaIcon name="tasks" size={23}  color={"#FFFF33"}/>,
-    content: 'My Account',
-  },
-  {
-    icon: <FaIcon name="bell" size={23}  color={"#FFFF33"} />,
-    content: 'Notifications',
-  },
-  {
-    icon: <FaIcon name="unlock-alt" size={23}  color={"#FFFF33"} />,
-    content: 'Password',
-  },
-  {
-    icon: <FaIcon name="cog" size={23}  color={"#FFFF33"}/>,
-    content: 'Settings',
-  },
-];
 
-export default function ProfileList() {
+
+export default function ProfileList({route, navigation}) {
+  const componentData = [
+    {
+      icon: <FaIcon name="user" size={23} color={"#FFFF33"}/>,
+      content: 'My Profile',
+    },
+    {
+      icon: <FaIcon name="tasks" size={23}  color={"#FFFF33"}/>,
+      content: 'My Account',
+    },
+    {
+      icon: <FaIcon name="bell" size={23}  color={"#FFFF33"} />,
+      content: 'Notifications',
+    },
+    {
+      icon: <FaIcon name="unlock-alt" size={23}  color={"#FFFF33"} />,
+      content: 'Password',
+    },
+    {
+      icon: <FaIcon name="cog" size={23}  color={"#FFFF33"}/>,
+      content: 'Settings',
+    },
+    {
+      icon: <FaIcon name="cog" size={23}  color={"#FFFF33"}/>,
+      content: 'Logout',
+      func:()=>{route.params.signOut()}
+    },
+    
+  ];
   return (
     <SafeAreaView>
       <View style={styles.topPortion}>
@@ -40,7 +48,7 @@ export default function ProfileList() {
 
       <ScrollView style={styles.icon}>
         {componentData.map(e => (
-          <ProfileComp icon={e.icon} content={e.content} />
+          <ProfileComp onPress={()=>{e.func()}} icon={e.icon} content={e.content}  />
         ))}
       </ScrollView>
     </SafeAreaView>

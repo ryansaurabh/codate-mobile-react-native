@@ -9,11 +9,19 @@
       "UnauthRoleName": "amplify-codatemobile-dev-144633-unauthRole",
       "StackName": "amplify-codatemobile-dev-144633",
       "StackId": "arn:aws:cloudformation:ap-south-1:957085288627:stack/amplify-codatemobile-dev-144633/27239f00-8a52-11ec-ab6b-02c72037aa74",
-      "AmplifyAppId": "d6437ruvxglj5"
+      "AmplifyAppId": "d6437ruvxglj5",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-codatemobile-dev-144633-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "codatemobilebcba8cc4": {}
+      },
+      "function": {
+        "codatemobilebcba8cc4PostConfirmation": {
+          "GROUP": "user",
+          "deploymentBucketName": "amplify-codatemobile-dev-144633-deployment",
+          "s3Key": "amplify-builds/codatemobilebcba8cc4PostConfirmation-776d77532f7044722b43-build.zip"
+        }
       }
     }
   }

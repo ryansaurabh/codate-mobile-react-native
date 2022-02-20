@@ -1,0 +1,18 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "codatemobilebcba8cc4",
+  "functionName": "codatemobilebcba8cc4PostConfirmation",
+  "resourceName": "codatemobilebcba8cc4PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "C:\\Users\\ankit\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "codatemobilebcba8cc4PostConfirmation",
+  "skipEdit": true,
+  "GROUP": "user",
+  "enableCors": false
+}
